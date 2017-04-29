@@ -36,6 +36,7 @@ context = {
         'port':conf.get('smtp', 'port'),
         'spa': conf.get('smtp', 'spa'),
         'ssl': conf.get('smtp', 'ssl'),
+        'tls': conf.get('smtp', 'tls'),
         'socket': conf.get('smtp', 'socket')
         },
     'pop': {
@@ -56,11 +57,11 @@ context = {
 @app.before_request
 def before_request():
     if DEBUG:
-        #~ print "HEADERS", request.headers
-        #~ print "REQ_path", request.path
-        #~ print "ARGS",request.args
+        print "HEADERS", request.headers
+        print "REQ_path", request.path
+        print "ARGS",request.args
         print "DATA",request.data
-        #~ print "FORM",request.form
+        print "FORM",request.form
 
 @app.route("/Autodiscover/Autodiscover.xml", methods=['GET','POST',])
 @app.route("/autodiscover/autodiscover.xml", methods=['GET','POST',])
@@ -81,7 +82,8 @@ def outlook_applemail():
     context['schema'] = schema
     tpl = render_template('autodiscover.xml', **context)
     response = make_response(tpl)
-    response.headers["Content-Type"] = "application/xml"    
+    response.headers["Content-Type"] = "application/xml"
+    print tpl
     return response
     #~ abort(404)
 
