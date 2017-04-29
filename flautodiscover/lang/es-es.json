@@ -1,0 +1,29 @@
+{
+  "ex_configure_your_email": {
+    "value": "Configura tu correo de"
+  },
+  "ex_configure_imap_server": {
+    "value": "Servidor de correo Entrante IMAP"
+  },
+  "ex_configure_pop_server": {
+    "value": "Servidor de correo Entrante POP"
+  },
+  "ex_configure_smtp_server": {
+    "value": "Servidor de correo Saliente SMTP"
+  },
+  "ex_recommended_gmail_only": {
+    "value": "Recomendado solo para Gmail"
+  },
+  "ex_contact_and_support": {
+    "value": "Contacto y Soporte"
+  },
+  "ex_host": {
+    "value": "Servidor"
+  },
+  "ex_port": {
+    "value": "Puerto"
+  },
+  "ex_check_spa": {
+    "value": "Marcar SPA"
+  }
+}
