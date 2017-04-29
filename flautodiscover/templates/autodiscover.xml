@@ -18,6 +18,7 @@
 				<DomainName>{{domain}}</DomainName>
 				<SPA>{{imap.spa}}</SPA>
 				<SSL>{{imap.ssl}}</SSL>
+                {% if smtp.socket == 'TLS' %}<Encryption>TLS</Encryption>{% endif %}
 				<AuthRequired>on</AuthRequired>
 			</Protocol>
 			{% if disable_pop == False %}
@@ -31,6 +32,7 @@
 				<DomainName>{{domain}}</DomainName>
 				<SPA>{{pop.spa}}</SPA>
 				<SSL>{{pop.ssl}}</SSL>
+                {% if smtp.socket == 'TLS' %}<Encryption>TLS</Encryption>{% endif %}
 				<AuthRequired>on</AuthRequired>
 			</Protocol>
 			{% endif %}
@@ -44,6 +46,7 @@
 				<DomainName>{{domain}}</DomainName>
 				<SPA>{{smtp.spa}}</SPA>
 				<SSL>{{smtp.ssl}}</SSL>
+                {% if smtp.socket == 'TLS' %}<Encryption>TLS</Encryption>{% endif %}
 				<AuthRequired>on</AuthRequired>
 			</Protocol>
 		</Account>
