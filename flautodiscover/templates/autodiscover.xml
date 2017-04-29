@@ -8,33 +8,42 @@
 		<Account>
 			<AccountType>email</AccountType>
 			<Action>settings</Action>
-
 			<Protocol>
 				<Type>IMAP</Type>
-				<TTL>1</TTL>
+				<TTL>{{ttl}}</TTL>
 				<Server>{{imap.host}}</Server>
 				<Port>{{imap.port}}</Port>
 				<LoginName>{{email}}</LoginName>
-				<DomainRequired>on</DomainRequired>
+				<DomainRequired>{{imap.domain_required}}</DomainRequired>
 				<DomainName>{{domain}}</DomainName>
-				<SPA>{{microsoft_spa}}</SPA>
-				<SSL>on</SSL>
+				<SPA>{{imap.spa}}</SPA>
+				<SSL>{{imap.ssl}}</SSL>
 				<AuthRequired>on</AuthRequired>
 			</Protocol>
-		</Account>
-		<Account>
-			<AccountType>email</AccountType>
-			<Action>settings</Action>
+			{% if disable_pop == False %}
+			<Protocol>
+				<Type>POP</Type>
+				<TTL>{{ttl}}</TTL>
+				<Server>{{pop.host}}</Server>
+				<Port>{{pop.port}}</Port>
+				<LoginName>{{email}}</LoginName>
+				<DomainRequired>{{pop.domain_required}}</DomainRequired>
+				<DomainName>{{domain}}</DomainName>
+				<SPA>{{pop.spa}}</SPA>
+				<SSL>{{pop.ssl}}</SSL>
+				<AuthRequired>on</AuthRequired>
+			</Protocol>
+			{% endif %}
 			<Protocol>
 				<Type>SMTP</Type>
-				<TTL>1</TTL>
+				<TTL>{{ttl}}</TTL>
 				<Server>{{smtp.host}}</Server>
 				<Port>{{smtp.port}}</Port>
 				<LoginName>{{email}}</LoginName>
-				<DomainRequired>on</DomainRequired>
+				<DomainRequired>{{smtp.domain_required}}</DomainRequired>
 				<DomainName>{{domain}}</DomainName>
-				<SPA>{{microsoft_spa}}</SPA>
-				<SSL>on</SSL>
+				<SPA>{{smtp.spa}}</SPA>
+				<SSL>{{smtp.ssl}}</SSL>
 				<AuthRequired>on</AuthRequired>
 			</Protocol>
 		</Account>

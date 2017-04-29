@@ -1,20 +1,56 @@
-from flask import Flask, request, render_template, make_response, redirect, abort
-from settings import *
+import os, uuid
 import xmltodict
-import uuid
-app = Flask(__name__)
+from ConfigParser import SafeConfigParser
+from flask import Flask, request, render_template, make_response, redirect, abort
+#~ from settings import *
+from flask_ptrans import ptrans
 
+def local_path(*path_elements):
+    return os.path.abspath(os.path.join(__file__, "..", *path_elements))
+
+conf = SafeConfigParser()
+conf.read('sample_conf.ini')
+DEBUG = conf.get('general', 'debug')
+
+app = Flask(__name__)
+ptrans.init_localisation(local_path("lang"))
+app.jinja_env.add_extension('flask_ptrans.ptrans.ptrans')
+    
 """ Default context """
 context = {
-    'server': DEFAULT_SERVER_DOMAIN,
-    'domain': DEFAULT_SERVER_DOMAIN,
-    'imap': {'host':DEFAULT_SERVER_IMAP, 'port':DEFAULT_SERVER_IMAP_PORT},
-    'smtp': {'host':DEFAULT_SERVER_SMTP, 'port':587},
-    'socket': DEFAULT_SERVER_SOCKET,
-    'payload_identifier': PAYLOAD_IDENTIFIER,
-    'microsoft_spa': DEFAULT_MICROSOFT_SPA,
-    'contact_company': DEFAULT_CONTACT_COMPANY,
-    'contact_url': DEFAULT_CONTACT_URL,
+    'server': conf.get('general', 'server'),
+    'domain': conf.get('general', 'domain'),
+    'ttl': conf.get('general', 'ttl'),
+    'disable_pop': conf.get('general', 'disable_pop'),
+    'imap': {
+        'authentication': conf.get('imap', 'authentication'),
+        'host':conf.get('imap', 'host'),
+        'port':conf.get('imap', 'port'),
+        'spa': conf.get('imap', 'spa'),
+        'ssl': conf.get('imap', 'ssl'),
+        'socket': conf.get('imap', 'socket')
+        },
+    'smtp': {
+        'authentication': conf.get('smtp', 'authentication'),
+        'host':conf.get('smtp', 'host'),
+        'port':conf.get('smtp', 'port'),
+        'spa': conf.get('smtp', 'spa'),
+        'ssl': conf.get('smtp', 'ssl'),
+        'socket': conf.get('smtp', 'socket')
+        },
+    'pop': {
+        'authentication': conf.get('pop', 'authentication'),
+        'host':conf.get('pop', 'host'),
+        'port':conf.get('pop', 'port'),
+        'spa': conf.get('pop', 'spa'),
+        'ssl': conf.get('pop', 'ssl'),
+        'socket': conf.get('pop', 'socket')
+        },
+    #~ 'socket': DEFAULT_SERVER_SOCKET,
+    'payload_identifier': '.'.join(('autodiscover.%s' % conf.get('general', 'server')).split('.')[::-1]),
+    'company_name': conf.get('company', 'name'),
+    'company_url': conf.get('company', 'url'),
+    'company_contact': conf.get('company', 'contact'),
 }
 
 @app.before_request
@@ -66,6 +102,12 @@ def thunderbird():
 def index():
     """ Welcome page in HTML. """
     #~ name = DEFAULT_SERVER_DOMAIN
+    locale = ptrans.best_locale()
+    try:
+        locale = request.headers.get('Accept-Language').split(",")[0]
+    except: pass
+    #~ print locale, ptrans.best_locale()
+    context['locale'] = locale
     return render_template('hello.html', **context)
 
 @app.route("/browserconfig.xml")
@@ -94,5 +136,6 @@ def ios_applemail():
     abort(404)
     
 if __name__ == "__main__":
+    print DEBUG
     #~ app.run(debug=DEBUG, host=HOST, port=443, ssl_context='adhoc') #For development purposes only. pyOpenssl required
-    app.run(debug=DEBUG, host=HOST, port=PORT)
+    app.run(debug=DEBUG, host=conf.get('general', 'host'), port=int(conf.get('general', 'port')))
