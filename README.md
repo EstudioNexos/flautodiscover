@@ -1,11 +1,11 @@
 # flautodiscover
 Email settings autodiscover / autoconfig for outlook, thunderbird and others. Made with Python and Flask
 
-Includes user help for configuring email clients.
+Includes multilingual user help for configuring email clients.
 
 ## Python modules requirements
 
-Flask and Xmltodict
+Flask, Flask Ptrans and Xmltodict
 
 ## Server requirements
 
