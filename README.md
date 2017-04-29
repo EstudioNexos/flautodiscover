@@ -3,10 +3,14 @@ Email settings autodiscover / autoconfig for outlook, thunderbird and others. Ma
 
 Includes user help for configuring email clients.
 
-Server requirements
+## Python modules requirements
+
+Flask and Xmltodict
+
+## Server requirements
 
 You can serve this app using your favourite wsgi method. We provide nginx+supervisor+gunicorn documentation.
 
-Domains requirements
+## Domains requirements
 
 You will have to have access to domains DNS records.
