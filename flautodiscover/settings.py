@@ -1,0 +1,13 @@
+DEBUG = True #True or False
+PORT = 11111
+HOST = '0.0.0.0'
+DEFAULT_SERVER_DOMAIN = 'getcloud.info' #change this to your main mail auth domain
+DEFAULT_SERVER_SMTP = 'smtp.%s' % DEFAULT_SERVER_DOMAIN
+DEFAULT_SERVER_SMTP_PORT = 587
+DEFAULT_SERVER_IMAP = 'imap.%s' % DEFAULT_SERVER_DOMAIN
+DEFAULT_SERVER_IMAP_PORT = 143
+DEFAULT_SERVER_SOCKET = 'SSL'
+PAYLOAD_IDENTIFIER = '.'.join(('autodiscover.%s' % DEFAULT_SERVER_DOMAIN).split('.')[::-1])
+DEFAULT_MICROSOFT_SPA = 'off'
+DEFAULT_CONTACT_URL = 'https://www.estudionexos.com'
+DEFAULT_CONTACT_COMPANY = 'Estudio Nexos'

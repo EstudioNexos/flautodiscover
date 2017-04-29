@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clientConfig version="1.1">
+	<emailProvider id="{{domain}}">
+	    <domain>{{domain}}</domain>
+
+	    <displayName>{{email}}</displayName>
+	    <displayShortName>{{name}}</displayShortName>
+
+	    <incomingServer type="imap">
+			<hostname>{{imap.host}}</hostname>
+			<port>{{imap.port}}</port>
+			<socketType>SSL</socketType>
+			<authentication>password-cleartext</authentication>
+			<username>{{email}}</username>
+		</incomingServer>
+
+	    <outgoingServer type="smtp">
+			<hostname>{{smtp.host}}</hostname>
+			<port>{{smtp.port}}</port>
+			<socketType>SSL</socketType>
+			<authentication>password-cleartext</authentication>
+			<username>{{email}}</username>
+	    </outgoingServer>
+	</emailProvider>
+</clientConfig>
