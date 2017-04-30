@@ -25,5 +25,17 @@
   },
   "ex_check_spa": {
     "value": "Marcar SPA"
+  },
+  "ex_socket": {
+    "value": "Seguridad de la conexión"
+  },
+  "ex_password_security": {
+    "value": "Método de indentificación"
+  },
+  "ex_plain_password": {
+    "value": "Contraseña normal"
+  },
+  "ex_encripted_password": {
+    "value": "Contraseña cifrada"
   }
 }

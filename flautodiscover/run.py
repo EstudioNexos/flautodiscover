@@ -83,9 +83,7 @@ def outlook_applemail():
     tpl = render_template('autodiscover.xml', **context)
     response = make_response(tpl)
     response.headers["Content-Type"] = "application/xml"
-    print tpl
     return response
-    #~ abort(404)
 
 @app.route("/mail/config-v1.1.xml")
 def thunderbird():
@@ -103,13 +101,31 @@ def thunderbird():
 @app.route("/")
 def index():
     """ Welcome page in HTML. """
-    #~ name = DEFAULT_SERVER_DOMAIN
+    muas = [
+        {'option':'macmail','name': 'Apple OSX Mail'},
+        {'option':'outlook','name': 'Microsoft Outlook'},
+        {'option':'gmailweb','name': 'Gmail Web'},
+        {'option':'gmailandroid','name': 'Gmail Android'},
+    ]
+    template_doc = "doc/empty.html"
     locale = ptrans.best_locale()
+    email = request.args.get('emailaddress')
+    mua = request.args.get('mua')
+    selected_mua = None
+    context['email'] = ''
     try:
         locale = request.headers.get('Accept-Language').split(",")[0]
     except: pass
-    #~ print locale, ptrans.best_locale()
+    if email and '.' in email and '@' in email and mua:
+        mailbox, domain = email.split('@')
+        context['domain'] = domain
+        context['email'] = email
+        selected_mua = mua
+        template_doc = "doc/%s-%s.html" % (mua, locale)
+    context['selected_mua'] = selected_mua
+    context['template_doc'] = template_doc
     context['locale'] = locale
+    context['muas'] = muas
     return render_template('hello.html', **context)
 
 @app.route("/browserconfig.xml")
