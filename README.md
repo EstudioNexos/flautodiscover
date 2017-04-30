@@ -11,6 +11,7 @@ Flask, Flask Ptrans, Flask Markdown and Xmltodict.
 
 ```pip install -r flautodiscover/requirements.txt```
 
+[Screenshot of flautodiscover](https://github.com/EstudioNexos/flautodiscover/blob/master/screenshot.jpg)
 
 ## Server requirements and setup
 
