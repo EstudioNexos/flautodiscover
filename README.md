@@ -43,7 +43,10 @@ Duplicate file at lang/es-es.json to desired language code, eg: lang/fr-fr.json 
 
 Edit fr-fr.json "values" to french language.
 
+More info: https://github.com/Skyscanner/flask-ptrans/blob/master/README.md
+
 Note 1: lang files must be valid JSON files, do not leave trailing comas.
+
 Note 2: You can contribute to this repo with your language files though web help is still unfinished and lang files may suffer a lot of changes.
 
 
