@@ -5,15 +5,33 @@ Includes multilingual user help for configuring email clients.
 
 ## Python modules requirements
 
-Flask, Flask Ptrans and Xmltodict
+Flask, Flask Ptrans, Flask Markdown and Xmltodict.
+
+```pip install -r flautodiscover/requirements.txt```
 
 ## Server requirements
 
 You can serve this app using your favourite wsgi method. We provide nginx+supervisor+gunicorn documentation.
 
+You need to serve web application using an SSL certificate or Outlook will no work. (Pending)
+
+Set your setup paths in flautodiscover/gunicorn_conf.py, fla_supervisor.conf and fla_nginx.conf
+
+Copy fla_supervisor.conf to /etc/supervisor/conf.d/ and run supervisorctl update. Run supervisorctl status to check for errors.
+
+Copy fla_nginx.conf to /etc/nginx/sites-available. Link /etc/nginx/sites-available/fla_nginx.conf to etc/nginx/sites-enabled/fla_nginx.conf. Run nginx -t to check for errors. Finally run service nginx reload.
+
 ## Domains requirements
 
 You will have to have access to domains DNS records.
+
+Add two CNAME records to each domain you are serving mail for:
+
+```
+CNAME autodiscover mydomain.com
+CNAME autoconfig mydomain.com
+```
+Go with your web browser to https://autodiscover.mydomain.com and you should be able to see web page and MUAs documentation.
 
 ## Translate to your users language
 
