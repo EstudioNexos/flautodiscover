@@ -9,8 +9,8 @@
         @import url(http://fonts.googleapis.com/css?family=Roboto);
 
         html,body {
-          height:100%;
-              font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+            height:100%;
+            font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
         }
         h1,
         h2,
@@ -18,44 +18,34 @@
         h4,
         h5,
         h6 {
-            text-transform: uppercase;
-            font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
-            font-weight: 400;
-            letter-spacing: 0.1em;
-            line-height:1em;
-            text-align:center;
-            paddding:0.5em;
-            /*font-size:80px;
-            color:#DDCCEE;*/
+            font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
         }
-
     </style>
 </head>
 <body>
     <div class="container-full">
         <div class="row">
             <div class="col-lg-12 text-center v-center">
-            <h1><a href="/">{% ptrans ex_configure_your_email %}Configure your email at{% endptrans %} {{server}}</a></h1>
-            <a href="/"><img src="/static/noun_71814_cc.svg" style="width:200px;"></a>
-            <p class="lead">Set your email and email client and press OK</p>
-            <br>
-            <form class="col-lg-6" action="." method="get">
-                <input type="text" name="emailaddress" value="{{email}}" class="center-block form-control input-lg" title="Enter you email." placeholder="Enter your email address">
-                {% for mua in muas %}
-                <div class="form-group">
-                    <h3>
-                    <label class="radio-inline">
-                        <input type="radio" name="mua" id="inlineRadio1" value="{{mua.option}}" {% if mua.option == selected_mua %}checked{% endif %}> {{mua.name}}
-                    </label>
-                    </h3>
-                {% endfor %}
-                </div>
-                <button class="btn btn-lg btn-primary" type="submit">Get help</button>
-            </form>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                {{template_doc}}
+                <h1><a href="/">{% ptrans ex_configure_your_email %}Configure your email at{% endptrans %} {{server}}</a></h1>
+                <a href="/"><img src="/static/noun_71814_cc.svg" style="width:200px;"></a>
+                <p class="lead">Set your email and email client and press OK or <a href="#generic-info">Read generic information</a></p>
+                <br>
+                <form class="col-lg-6" action="." method="get">
+                    <input type="text" name="emailaddress" value="{{email}}" class="center-block form-control input-lg" title="Enter you email." placeholder="Enter your email address">
+                    {% for mua in muas %}
+                    <div class="form-group">
+                        <h3>
+                        <label class="radio-inline">
+                            <input type="radio" name="mua" id="inlineRadio1" value="{{mua.option}}" {% if mua.option == selected_mua %}checked{% endif %}> {{mua.name}}
+                        </label>
+                        </h3>
+                    {% endfor %}
+                    </div>
+                    <button class="btn btn-lg btn-primary" type="submit">Get help</button>
+                </form>
+            </div>
+            <div class="col-lg-12 text-left">
+                <!-- {{template_doc}} -->
                 {% include template_doc %}
             </div>
         </div>
@@ -64,7 +54,7 @@
         <hr>
         <div class="row">
             <div class="col-lg-12 text-center v-center">
-                <h2>Generic information</h2>
+                <h2><a name="generic-info" id="generic-info">Generic information</a></h2>
             </div>
             <div class="col-md-4">
                 <div class="panel panel-default">
@@ -75,7 +65,7 @@
                         <li class="list-group-item"><strong>{% ptrans ex_host %}Host{% endptrans %}:</strong> {{imap.host}}</li>
                         <li class="list-group-item"><strong>{% ptrans ex_port %}Port{% endptrans %}:</strong> {{imap.port}}</li>
                         <li class="list-group-item"><strong>{% ptrans ex_socket %}Connection security{% endptrans %}:</strong> {{imap.socket}}</li>
-                        <li class="list-group-item"><strong>{% ptrans ex_check_spa %}Outlook Check SPA{% endptrans %}:</strong> {{imap.spa}}</li>
+                        <li class="list-group-item"><strong>Ms Outlook {% ptrans ex_check_spa %}Outlook Check SPA{% endptrans %}:</strong> {{imap.spa}}</li>
                         
                     </ul>
                 </div>
@@ -90,7 +80,7 @@
                         <li class="list-group-item"><strong>{% ptrans ex_port %}Port{% endptrans %}:</strong> {{pop.port}}</li>
                         <li class="list-group-item"><strong>{% ptrans ex_ssl %}SSL{% endptrans %}:</strong> {{pop.spa}}</li>
                         <li class="list-group-item"><strong>{% ptrans ex_socket %}Connection security{% endptrans %}:</strong> {{pop.socket}}</li>
-                        <li class="list-group-item"><strong>{% ptrans ex_check_spa %}Outlook Check SPA{% endptrans %}:</strong> {{pop.spa}}</li>
+                        <li class="list-group-item"><strong>Ms Outlook {% ptrans ex_check_spa %}Check SPA{% endptrans %}:</strong> {{pop.spa}}</li>
                     </ul>
                     <div class="panel-footer">
                         <p class="alert alert-danger">{% ptrans ex_recommended_gmail_only %}Recommended only for Gmail consuming.{% endptrans %}</p>
@@ -112,11 +102,11 @@
                             <li class="list-group-item"><strong>{% ptrans ex_password_security %}Authentication method{% endptrans %}:</strong> {% ptrans ex_encrypted_password %}Encrypted password{% endptrans %}</li>
                         {% endif %}
                         {% if smtp.tls == 'on' %}
-                            <li class="list-group-item"><strong>Outlook {% ptrans ex_tls %}TLS{% endptrans %}:</strong> {{smtp.tls}}</li>
+                            <li class="list-group-item"><strong>Ms Outlook {% ptrans ex_tls %}TLS{% endptrans %}:</strong> {{smtp.tls}}</li>
                         {% else %}
-                            <li class="list-group-item"><strong>Outlook {% ptrans ex_ssl %}SSL{% endptrans %}:</strong> {{smtp.ssl}}</li>
+                            <li class="list-group-item"><strong>Ms Outlook {% ptrans ex_ssl %}SSL{% endptrans %}:</strong> {{smtp.ssl}}</li>
                         {% endif %}
-                        <li class="list-group-item"><strong>{% ptrans ex_check_spa %}Outlook Check SPA{% endptrans %}:</strong> {{smtp.spa}}</li>
+                        <li class="list-group-item"><strong>Ms Outlook {% ptrans ex_check_spa %}Check SPA{% endptrans %}:</strong> {{smtp.spa}}</li>
                     </ul>
                 </div>
             </div>

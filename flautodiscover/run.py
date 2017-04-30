@@ -3,6 +3,7 @@ import xmltodict
 from ConfigParser import SafeConfigParser
 from flask import Flask, request, render_template, make_response, redirect, abort
 #~ from settings import *
+from flaskext.markdown import Markdown
 from flask_ptrans import ptrans
 
 def local_path(*path_elements):
@@ -15,7 +16,9 @@ DEBUG = conf.get('general', 'debug')
 app = Flask(__name__)
 ptrans.init_localisation(local_path("lang"))
 app.jinja_env.add_extension('flask_ptrans.ptrans.ptrans')
-    
+Markdown(app)
+
+
 """ Default context """
 context = {
     'server': conf.get('general', 'server'),
@@ -121,7 +124,7 @@ def index():
         context['domain'] = domain
         context['email'] = email
         selected_mua = mua
-        template_doc = "doc/%s-%s.html" % (mua, locale)
+        template_doc = "doc/%s-%s.md" % (mua, locale)
     context['selected_mua'] = selected_mua
     context['template_doc'] = template_doc
     context['locale'] = locale
