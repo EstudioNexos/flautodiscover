@@ -28,10 +28,10 @@
             <div class="col-lg-12 text-center v-center">
                 <h1><a href="/">{% ptrans ex_configure_your_email %}Configure your email at{% endptrans %} {{server}}</a></h1>
                 <a href="/"><img src="/static/noun_71814_cc.svg" style="width:200px;"></a>
-                <p class="lead">Set your email and email client and press OK or <a href="#generic-info">Read generic information</a></p>
+                <p class="lead">{% ptrans ex_lead_1 %}Set your email address and email client and press Get Help or{% endptrans %} <a href="#generic-info">{% ptrans ex_lead_2 %}Read generic information{% endptrans %}</a></p>
                 <br>
                 <form class="col-lg-6" action="." method="get">
-                    <input type="text" name="emailaddress" value="{{email}}" class="center-block form-control input-lg" title="Enter you email." placeholder="Enter your email address">
+                    <input type="text" name="emailaddress" value="{{email}}" class="center-block form-control input-lg" placeholder="{% ptrans ex_enter_email_address %}Your email address{% endptrans %}">
                     {% for mua in muas %}
                     <div class="form-group">
                         <h3>
@@ -41,7 +41,7 @@
                         </h3>
                     {% endfor %}
                     </div>
-                    <button class="btn btn-lg btn-primary" type="submit">Get help</button>
+                    <button class="btn btn-lg btn-primary" type="submit">{% ptrans ex_get_help %}Get help{% endptrans %}</button>
                 </form>
             </div>
             <div class="col-lg-12 text-left">
@@ -54,7 +54,7 @@
         <hr>
         <div class="row">
             <div class="col-lg-12 text-center v-center">
-                <h2><a name="generic-info" id="generic-info">Generic information</a></h2>
+                <h2><a name="generic-info" id="generic-info">{% ptrans ex_lead_2 %}Generic information{% endptrans %}</a></h2>
             </div>
             <div class="col-md-4">
                 <div class="panel panel-default">

@@ -2,6 +2,18 @@
   "ex_configure_your_email": {
     "value": "Configura tu correo de"
   },
+  "ex_enter_email_address": {
+    "value": "Tu dirección email"
+  },
+  "ex_lead_1": {
+    "value": "Introduce tu dirección email y cliente de correo y pulsa Conseguir Ayuda o"
+  },
+  "ex_lead_2": {
+    "value": "Consulta la información genérica"
+  },
+  "ex_get_help": {
+    "value": "Conseguir Ayuda"
+  },
   "ex_configure_imap_server": {
     "value": "Servidor de correo Entrante IMAP"
   },
