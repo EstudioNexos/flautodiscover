@@ -113,6 +113,7 @@ def index():
     template_doc = "doc/empty.html"
     locale = ptrans.best_locale()
     email = request.args.get('emailaddress')
+    context['bootswatch'] = conf.get('general', 'bootswatch')
     mua = request.args.get('mua')
     selected_mua = None
     context['email'] = ''

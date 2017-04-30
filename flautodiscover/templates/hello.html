@@ -1,47 +1,44 @@
 <html>
 <head>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/{{bootswatch}}/bootstrap.min.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style>
-        @import url(http://fonts.googleapis.com/css?family=Roboto);
-
-        html,body {
-            height:100%;
-            font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-        }
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-        }
-    </style>
 </head>
-<body>
-    <div class="container-full">
+<body style="padding-top:2em">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-12 text-center v-center">
-                <h1><a href="/">{% ptrans ex_configure_your_email %}Configure your email at{% endptrans %} {{server}}</a></h1>
-                <a href="/"><img src="/static/noun_71814_cc.svg" style="width:200px;"></a>
-                <p class="lead">{% ptrans ex_lead_1 %}Set your email address and email client and press Get Help or{% endptrans %} <a href="#generic-info">{% ptrans ex_lead_2 %}Read generic information{% endptrans %}</a></p>
-                <br>
-                <form class="col-lg-6" action="." method="get">
-                    <input type="text" name="emailaddress" value="{{email}}" class="center-block form-control input-lg" placeholder="{% ptrans ex_enter_email_address %}Your email address{% endptrans %}">
-                    {% for mua in muas %}
-                    <div class="form-group">
-                        <h3>
-                        <label class="radio-inline">
-                            <input type="radio" name="mua" id="inlineRadio1" value="{{mua.option}}" {% if mua.option == selected_mua %}checked{% endif %}> {{mua.name}}
-                        </label>
-                        </h3>
-                    {% endfor %}
+                <div class="col-md-4 text-right">
+                    <a href="/"><img src="/static/noun_71814_cc.svg" class="img-responsive"></a>
+                </div>
+                <div class="col-md-6 text-center v-center">
+                    <h1><a href="/">{% ptrans ex_configure_your_email %}Configure your email at{% endptrans %} {{server}}</a></h1>
+                    <p class="lead">{% ptrans ex_lead_1 %}Set your email address and email client and press Get Help or{% endptrans %} <a href="#generic-info">{% ptrans ex_lead_2 %}Read generic information{% endptrans %}</a></p>
+                    <br>
+                </div>
+        </div>
+        <div class="row well">
+                <form action="." method="get">
+                    <div class="col-md-4">
+                        <br>
+                        <input type="text" name="emailaddress" value="{{email}}" class="center-block form-control input-lg" placeholder="{% ptrans ex_enter_email_address %}Your email address{% endptrans %}">
                     </div>
-                    <button class="btn btn-lg btn-primary" type="submit">{% ptrans ex_get_help %}Get help{% endptrans %}</button>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                        {% for mua in muas %}
+                            <h3>
+                            <label class="radio-inline">
+                                <input type="radio" name="mua" id="inlineRadio1" value="{{mua.option}}" {% if mua.option == selected_mua %}checked{% endif %}> {{mua.name}}
+                            </label>
+                            </h3>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <br>
+                        <button class="btn btn-lg btn-primary" type="submit">{% ptrans ex_get_help %}Get help{% endptrans %}</button>
+                    </div>
                 </form>
             </div>
             <div class="col-lg-12 text-left">
